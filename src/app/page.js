@@ -1,28 +1,51 @@
 "use client";
-import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowDown, X } from "lucide-react";
 import Image from "next/image";
 
 const poems = [
   {
     title: "The Window of Reflection",
     excerpt: "A quiet gaze, a world beyond the glass…",
+    full: `Through the glass, the world unfolds,
+Whispers of silence, stories untold.
+In still reflection, truth is clear,
+A mirror of dreams, both far and near.`,
+    image: "/poem-images/Background.png", // Add your image path here
   },
   {
     title: "The Ocean of Words",
     excerpt: "Waves crash, carrying verses untold…",
+    full: `Each wave a stanza, fierce yet free,
+Carving poems into the sea.
+Tides of meaning, vast and deep,
+Secrets the ocean dares to keep.`,
+    image: "/poem-images/ocean-waves.jpg", // Add your image path here
   },
   {
     title: "Midnight Whispers",
     excerpt: "Shadows speak in delicate tones of night…",
+    full: `The stars lean low, the silence speaks,
+Moonlight drips in silver streaks.
+Whispers linger in the air,
+Nighttime secrets everywhere.`,
+    image: "/poem-images/midnight-stars.jpg", // Add your image path here
   },
   {
     title: "Dancing Flames",
     excerpt: "Every flicker, a story of warmth and longing…",
+    full: `The fire sways, its rhythm bold,
+Stories shimmer, stories told.
+Each spark a memory, burning bright,
+A fleeting dance in endless night.`,
+    image: "/poem-images/dancing-flames.jpg", // Add your image path here
   },
 ];
 
 export default function Home() {
+  const [selectedPoem, setSelectedPoem] = useState(null);
+
   return (
     <main className="w-full overflow-hidden">
       {/* Landing Section */}
@@ -129,17 +152,70 @@ export default function Home() {
             >
               <h3 className="poem-title">{poem.title}</h3>
               <p className="poem-excerpt">{poem.excerpt}</p>
-              <motion.a
-                href="#"
+              <motion.button
+                onClick={() => setSelectedPoem(poem)}
                 whileHover={{ x: 5 }}
                 className="poem-link"
               >
                 Read More →
-              </motion.a>
+              </motion.button>
             </motion.div>
           ))}
         </div>
       </section>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {selectedPoem && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-6"
+            onClick={() => setSelectedPoem(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="poem-modal"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedPoem(null)}
+                className="poem-modal-close"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <div className="poem-modal-layout">
+                {/* Image Section */}
+                <div className="poem-modal-image">
+                  <Image
+                    src={selectedPoem.image}
+                    alt={selectedPoem.title}
+                    width={400}
+                    height={300}
+                    className="poem-image"
+                  />
+                </div>
+
+                {/* Text Section */}
+                <div className="poem-modal-text">
+                  <h3 className="poem-modal-title">
+                    {selectedPoem.title}
+                  </h3>
+                  <p className="poem-modal-content">
+                    {selectedPoem.full}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
