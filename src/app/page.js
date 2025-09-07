@@ -6,40 +6,47 @@ import Image from "next/image";
 
 const poems = [
   {
-    title: "The Window of Reflection",
-    excerpt: "A quiet gaze, a world beyond the glass…",
-    full: `Through the glass, the world unfolds,
-Whispers of silence, stories untold.
-In still reflection, truth is clear,
-A mirror of dreams, both far and near.`,
-    image: "/poem-images/Background.png", // Add your image path here
+    title: "Turmoil",
+    excerpt: "They cut like blades…",
+    full: `Can you see these things thin?
+They get under your skin,
+They cut like blades,
+You can't take it in,
+All they do is form a blaze.`,
+    image: "/poem-images/Turmoil.jpeg", 
   },
   {
-    title: "The Ocean of Words",
-    excerpt: "Waves crash, carrying verses untold…",
-    full: `Each wave a stanza, fierce yet free,
-Carving poems into the sea.
-Tides of meaning, vast and deep,
-Secrets the ocean dares to keep.`,
-    image: "/poem-images/ocean-waves.jpg", // Add your image path here
+    title: "Ease",
+    excerpt: "All moments were spent within…",
+    full: `Why do you spread yourself so thin?
+All moments were spent within,
+Suck it up, let yourself begin,
+Give a rest to your being,
+Get past those things.`,
+    image: "/poem-images/Ease.jpeg", 
   },
   {
-    title: "Midnight Whispers",
-    excerpt: "Shadows speak in delicate tones of night…",
-    full: `The stars lean low, the silence speaks,
-Moonlight drips in silver streaks.
-Whispers linger in the air,
-Nighttime secrets everywhere.`,
-    image: "/poem-images/midnight-stars.jpg", // Add your image path here
+    title: "Hush My Love",
+    excerpt: "There there, it doesn't have to be…",
+    full: `These are the words I say to me,
+There there, it doesn't have to be,
+How it hurts, are these stings from bees?
+Every string attached, its overwhelming me,
+I hide my face from thee, coz no one needs to see,
+They say you need to be alone to calm down,
+So all I need right now is me.`,
+    image: "/poem-images/Hush.jpeg", 
   },
   {
-    title: "Dancing Flames",
-    excerpt: "Every flicker, a story of warmth and longing…",
-    full: `The fire sways, its rhythm bold,
-Stories shimmer, stories told.
-Each spark a memory, burning bright,
-A fleeting dance in endless night.`,
-    image: "/poem-images/dancing-flames.jpg", // Add your image path here
+    title: "Solitude",
+    excerpt: "Open space fears my return…",
+    full: `Let me give myself time,
+I'll let the silence fill the void this time,
+As i gather composure, surely there's no crime,
+Open space should fear my return,
+For peace of mind I'll find.
+`,
+    image: "/poem-images/Solitude.jpeg", 
   },
 ];
 
@@ -53,7 +60,7 @@ export default function Home() {
         {/* Background image */}
         <div className="absolute inset-0">
           <Image
-            src="/Background.png" 
+            src="/Background.jpg" 
             alt="Poetry background"
             fill
             className="object-cover object-center"
