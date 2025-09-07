@@ -29,6 +29,19 @@ body {
 .hero-container {
   @apply relative z-10 flex h-full flex-col items-center justify-center text-center text-white;
   padding: 1rem 1rem;
+  position: relative;
+}
+
+.hero-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 @media (min-width: 475px) {
@@ -51,9 +64,15 @@ body {
 
 /* Hero Title Styles */
 .hero-title {
-  @apply font-bold drop-shadow-lg leading-tight;
+  @apply font-bold leading-tight;
   font-size: 1.875rem; /* text-3xl */
   margin-bottom: 1rem;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #e2e8f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
 @media (min-width: 475px) {
@@ -90,11 +109,14 @@ body {
 
 /* Hero Description Styles */
 .hero-description {
-  @apply drop-shadow-md leading-relaxed;
+  @apply leading-relaxed;
   font-size: 0.875rem; /* text-sm */
   max-width: 20rem; /* max-w-xs */
   margin-bottom: 1.5rem;
   padding: 0 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1px);
 }
 
 @media (min-width: 475px) {
@@ -135,10 +157,41 @@ body {
 
 /* Hero Button Styles */
 .hero-button {
-  @apply inline-flex items-center gap-2 rounded-full border-2 border-white bg-white/10 backdrop-blur-sm hover:bg-white hover:text-black transition-all duration-300 touch-manipulation;
+  @apply inline-flex items-center gap-2 rounded-full border-2 touch-manipulation;
   padding: 0.5rem 1rem;
   font-size: 0.875rem; /* text-sm */
   min-height: 44px;
+  border-color: rgba(255, 255, 255, 0.8);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  color: rgba(255, 255, 255, 0.95);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.hero-button:hover::before {
+  left: 100%;
+}
+
+.hero-button:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
+  color: #1a1a1a;
+  border-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
 }
 
 @media (min-width: 475px) {
@@ -185,5 +238,34 @@ body {
   .hero-icon {
     width: 1.5rem;
     height: 1.5rem;
+  }
+}
+
+/* Floating Particles */
+.floating-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 70%, transparent 100%);
+  border-radius: 50%;
+  left: 50%;
+  bottom: 20%;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+}
+
+@media (min-width: 768px) {
+  .particle {
+    width: 6px;
+    height: 6px;
   }
 }
