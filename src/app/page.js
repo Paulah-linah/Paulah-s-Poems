@@ -1,16 +1,19 @@
 "use client";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <main className="relative h-screen w-full overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src="/Background.png" 
           alt="Poetry background"
-          className="h-full w-full object-cover"
+          fill
+          className="object-cover"
+          priority
         />
         <div className="absolute inset-0 bg-black/50" /> {/* overlay */}
       </div>
@@ -23,7 +26,7 @@ export default function Home() {
           transition={{ duration: 1 }}
           className="hero-title"
         >
-          Paulah's Poems
+          Paulah&apos;s Poems
         </motion.h1>
 
         <motion.p
