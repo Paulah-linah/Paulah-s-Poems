@@ -12,8 +12,9 @@ export default function Home() {
           src="/Background.png" 
           alt="Poetry background"
           fill
-          className="object-cover"
+          className="object-cover object-center"
           priority
+          quality={100}
         />
         <div className="absolute inset-0 bg-black/50" /> {/* overlay */}
       </div>
